@@ -105,3 +105,16 @@ class _GoogleSecretManagerImpl implements GoogleSecretManager {
     return result;
   }
 }
+
+Future<String?> getSecretValue(
+      String name, {
+    String? version,
+    String? projectId,
+  }) async {
+
+    final base64EncodedValue = this.get(name);
+    final bytes = base64.decode(base64EncodedValue!);
+    final secretValue = utf8.decode(bytes);
+
+  return secretValue;
+}
